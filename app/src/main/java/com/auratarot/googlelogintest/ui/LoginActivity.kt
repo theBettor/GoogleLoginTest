@@ -1,6 +1,7 @@
 package com.auratarot.googlelogintest.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,6 +22,16 @@ class LoginActivity : AppCompatActivity() {
         uiSetting()
         setFragment(savedInstanceState)
         setContentView(binding.root)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        if (savedInstanceState == null) {
+            navController.setGraph(R.navigation.nav_graph)
+            Log.d("LoginActivity", "네비게이션 그래프 설정")
+        } else {
+            Log.d("LoginActivity", "네비게이션 그래프가 이미 설정되었습니다.")
+        }
     }
 
 

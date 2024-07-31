@@ -63,22 +63,41 @@ class LogInFragment : Fragment() {
 //                }
 //            }
 //        }
+//        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//            if (result.resultCode == Activity.RESULT_OK) {
+//                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+//                try {
+//                    val account = task.getResult(ApiException::class.java)!!
+//                    viewModel.getUser(account.idToken!!)
+//                    Toast.makeText(requireContext(), "로그인 성공", Toast.LENGTH_SHORT).show()
+//                    findNavController().navigate(R.id.action_logInFragment_to_homeFragment)
+//                } catch (e: ApiException) {
+//                    Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
         getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == Activity.RESULT_OK) { //
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 try {
                     val account = task.getResult(ApiException::class.java)!!
                     viewModel.getUser(account.idToken!!)
                     Toast.makeText(requireContext(), "로그인 성공", Toast.LENGTH_SHORT).show()
+                    Log.d("LogInFragment", "로그인 성공: ${account.displayName}")
                     findNavController().navigate(R.id.action_logInFragment_to_homeFragment)
                 } catch (e: ApiException) {
                     Toast.makeText(requireContext(), e.localizedMessage, Toast.LENGTH_SHORT).show()
+                    Log.e("LogInFragment", "로그인 실패: ${e.localizedMessage}")
                 }
+            } else {
+                Log.e("LogInFragment", "결과 코드가 Activity.RESULT_OK가 아닙니다: ${result.resultCode}")
+                Log.d("result", result.toString())
             }
         }
     }
 
     private fun login() {
+        Log.d("LogInFragment", "로그인 되나?")
         getResult.launch(googleSignInClient.signInIntent)
     }
 

@@ -21,11 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         uiSetting()
-        // Initialize NavHostFragment
-        if (savedInstanceState == null) {
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            val navController = navHostFragment.navController
-        }
     }
 
     private fun uiSetting() {
@@ -35,6 +30,4 @@ class MainActivity : AppCompatActivity() {
             WindowInsetsCompat.CONSUMED
         }
     }
-
-
 }

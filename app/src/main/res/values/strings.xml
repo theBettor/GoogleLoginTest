@@ -3,7 +3,7 @@
     <string name="web_client_id">211500090246-oguflr9s8t3r2d2ke7pod16272qi2m1s.apps.googleusercontent.com</string>
     <string name="google_login_client_id">986434941570-049iqirtos8olubgeuhdgbjv3umvth32.apps.googleusercontent.com</string>
 
-    <string name="app_name">따라오개</string>
+    <string name="app_name">구글로그인</string>
 
     <!-- main -->
     <string name="main_home">홈</string>
